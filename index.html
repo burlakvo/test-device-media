@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Test device media</title>
+</head>
+<body>
+	<p>width is <span id="width">...</span>px</p>
+	<p>touch screen is <span id="touch">...</span></p>
+	<p>high accuracy poiner is <span id="pointer">...</span></p>
+	<script>
+		(function(){
+			const width = window.innerWidth;
+			document.getElementById('width').innerText = width;
+
+			const touchScreenMedia = '(any-hover: none)';
+			const isTouchScreen = window.matchMedia(touchScreenMedia).matches;
+			document.getElementById('touch').innerText = isTouchScreen ? 'available' : 'NOT available';
+
+			const pointerMedia = '(any-pointer: fine)';
+			const isFinePointer = window.matchMedia(pointerMedia).matches;
+			document.getElementById('pointer').innerText = isFinePointer ? 'available' : 'NOT available';
+		})();
+	</script>
+</body>
+</html>
