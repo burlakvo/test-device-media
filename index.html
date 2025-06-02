@@ -9,6 +9,7 @@
 	<p>device is <span id="type">...</span></p>
 	<p>width is <span id="width">...</span>px</p>
 	<p>touch screen is <span id="touch">...</span></p>
+	<p>coarse pointer is <span id="touch2">...</span></p>
 	<p>high accuracy pointer is <span id="pointer">...</span></p>
 	<script>
 		(function(){
@@ -19,8 +20,12 @@
 			const isTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia(touchScreenMedia).matches;
 			document.getElementById('touch').innerText = isTouchScreen ? 'available' : 'NOT available';
 
-			const pointerMedia = '(any-pointer: fine)';
-			const isFinePointer = window.matchMedia(pointerMedia).matches;
+			const pointerMedia = '(pointer: coarse)';
+			const isCoarsePointer = window.matchMedia(pointerMedia).matches;
+			document.getElementById('touch2').innerText = isCoarsePointer ? 'available' : 'NOT available';
+
+			const anyPointerMedia = '(any-pointer: fine)';
+			const isFinePointer = window.matchMedia(anyPointerMedia).matches;
 			document.getElementById('pointer').innerText = isFinePointer ? 'available' : 'NOT available';
 
 			const isPortrait = window.innerWidth < window.innerHeight;
