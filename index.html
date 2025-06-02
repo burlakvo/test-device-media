@@ -6,9 +6,10 @@
 	<title>Test device media</title>
 </head>
 <body>
+	<p>device is <span id="type">...</span></p>
 	<p>width is <span id="width">...</span>px</p>
 	<p>touch screen is <span id="touch">...</span></p>
-	<p>high accuracy poiner is <span id="pointer">...</span></p>
+	<p>high accuracy pointer is <span id="pointer">...</span></p>
 	<script>
 		(function(){
 			const width = window.innerWidth;
@@ -21,6 +22,12 @@
 			const pointerMedia = '(any-pointer: fine)';
 			const isFinePointer = window.matchMedia(pointerMedia).matches;
 			document.getElementById('pointer').innerText = isFinePointer ? 'available' : 'NOT available';
+
+			const isPortrait = window.innerWidth < window.innerHeight;
+			let deviceType = 'mobile';
+			if (isFinePointer && width >= 800) deviceType = 'desktop';
+			else if (!isFinePointer && ((isPortrait && width >= 744) || (!isPortrait && width >= 1280))) deviceType = 'tablet';
+			document.getElementById('type').innerText = deviceType;
 		})();
 	</script>
 </body>
